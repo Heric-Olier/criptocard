@@ -1,0 +1,61 @@
+@import "../scss/mixins";
+@import "../scss/colors";
+
+.select__container {
+  @include flex(column, center, center);
+  border-radius: 0.5rem;
+  border: solid 1px $color-quaternary;
+  transition: all 0.3s ease-in-out;
+}
+
+.countryAnd__flag {
+  @include flex(row, center, center);
+  gap: 0.5rem;
+}
+
+.select {
+  @include flex(row, space-between, center);
+  padding: 0.6rem;
+  background-color: unset;
+  border: none;
+  width: 19.125rem;
+  height: 3.0625rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  h3 {
+    font-size: 1rem;
+    color: $color-tertiary;
+    font-weight: 500;
+  }
+}
+
+.select__optionsContainer {
+  height: 190px;
+  width: 100%;
+  overflow-y: scroll;
+  transition: all 0.3s ease-in-out;
+}
+
+.select__option {
+  @include flex(row, flex-start, center);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  gap: 0.5rem;
+  padding: 0 1rem;
+
+  &:hover {
+    background-color: #efdcbb;
+  }
+}
+
+.country__flag {
+  width: 2rem;
+}
+
+.select__icon {
+  width: 1rem;
+}
+
+@include tablet() {
+}

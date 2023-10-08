@@ -1,0 +1,11 @@
+@import "../scss/mixins";
+@import "../scss/colors";
+
+
+.countryOrigin__container {
+  @include flex(column, center, center);
+}
+
+@include tablet() {
+
+}

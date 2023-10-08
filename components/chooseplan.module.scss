@@ -1,0 +1,95 @@
+@import "../scss/mixins";
+@import "../scss/colors";
+
+.plan__cardsContainer {
+  @include flex(column, center, center);
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+}
+
+.plan__cards {
+  background-color: $color-secondary;
+  border: 1px rgb(225, 225, 225) solid;
+  padding: 1.5rem;
+  width: 19.4375rem;
+  border-radius: 1.25rem;
+  margin-bottom: 1.875rem;
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+  @include flex(row, flex-start, center);
+    
+  }
+
+  &:hover {
+    background-color: #494a4d;
+    color: $color-secondary;
+  }
+
+  &:hover .plan__cardsText {
+    color: $color-secondary;
+  }
+
+  &:hover .plan__cardsBenefitTwo {
+    color: $color-secondary;
+  }
+
+}
+
+.plan__cardsPrice {
+  margin: 0;
+  font-size: 1.875rem;
+  font-weight: 800;
+}
+
+.plan__cardsText {
+  color: $tex-tertiary;
+  margin-bottom: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+.plan__cardsIcon {
+  width: .9rem;
+  height: .9rem;
+  margin-right: 2px;
+}
+
+.plan__cardsDescription {
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.plan__cardsBenefits {
+  width: 100%;
+}
+
+.plan__cardsBenefitOne {
+  color: $text-secondary;
+  margin: 0;
+}
+
+.plan__cardsBenefitTwo {
+  color: $tex-tertiary;
+  transition: all 0.5s ease-in-out;
+  margin: 10px 0 0 0;
+}
+
+@include tablet() {
+  .plan__cardsContainer {
+    @include flex(row, center, center);
+    flex-wrap: wrap;
+  }
+
+  .plan__cards {
+    margin-left: 0.625rem;
+    margin-right: 0.625rem;
+    margin-bottom: 1.25rem;
+  }
+}

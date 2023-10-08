@@ -1,0 +1,61 @@
+@import "../scss/mixins";
+@import "../scss/colors";
+
+.container__summary {
+  @include flex(column, center, center);
+
+  width: 100%;
+}
+
+.order__text {
+  margin: .625rem 0;
+  color: $tex-tertiary;
+}
+
+.container__summaryItems {
+  @include flex(row, space-between, center);
+  width: 90%;
+  border-bottom: solid 1px #9a9a9a;
+  padding: 1.5rem;
+
+  h4 {
+    color: $tex-tertiary;
+    margin: 0.3125rem;
+  }
+
+  h5 {
+    color: $tex-tertiary;
+    font-size: 0.625rem;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  h2 {
+    margin: 0;
+    color: $color-tertiary;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: right;
+  }
+
+  img {
+    margin-right: 0.375rem;
+  }
+}
+
+.container__summaryTotal {
+  @include flex(row, space-between, center);
+  width: 90%;
+}
+
+.container__textImage {
+  @include flex(row, center, center);
+}
+
+@include tablet() {
+  .container__cards {
+    form {
+      @include flex(row, center, center);
+    }
+  }
+}

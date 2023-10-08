@@ -1,0 +1,18 @@
+@mixin flex($direction, $justify, $align) {
+  display: flex;
+  align-items: $align;
+  flex-direction: $direction;
+  justify-content: $justify;
+}
+
+@mixin mobile {
+  @media (min-width: 425px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: 770px) {
+    @content;
+  }
+}

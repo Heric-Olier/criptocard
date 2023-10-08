@@ -1,0 +1,78 @@
+@import "../scss/mixins";
+@import "../scss/colors";
+
+.container__shipping {
+  width: 100%;
+}
+
+.container__shippingMethods {
+  @include flex(column, center, center);
+  width: 100%;
+  margin-bottom: 2.5rem;
+
+  form {
+    @include flex(column, center, center);
+    width: 100%;
+  }
+
+  label {
+    @include flex(row, space-between, center);
+    cursor: pointer;
+    border: solid 1px #d7d7d7;
+    padding: 0.625rem;
+    width: 90%;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background-color: #efdcbb;
+    }
+  }
+
+  input {
+    width: 1.25rem;
+    height: 1.25rem;
+    cursor: pointer;
+  }
+
+  label:nth-child(1) {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  label:nth-child(4) {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+
+  h4 {
+    color: $tex-tertiary;
+    margin: 0.3125rem;
+  }
+
+  h5 {
+    color: $tex-tertiary;
+    font-size: 0.625rem;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  h2 {
+    margin: 0;
+    color: #959595;
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+}
+
+.container__text {
+  @include flex(row, center, center);
+}
+
+@include tablet() {
+  .container__cards {
+    form {
+      @include flex(row, center, center);
+    }
+  }
+}
