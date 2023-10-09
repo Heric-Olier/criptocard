@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "@/scss/global.scss";
 import { Inter } from "next/font/google";
-import { ContextProvider } from "@/app/Context/GlobalContext";
+import { ContextProvider } from "@/app/context/GlobalContext";
 
 export const metadata = {
   title: "Cryptospace Card",

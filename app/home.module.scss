@@ -32,8 +32,8 @@
 
 .hero__button {
   @include flex(column, center, center);
-  width: 10.125rem;
-  height: 2.4375rem;
+  width: 13.125rem;
+  height: 3rem;
   border-radius: 0.5rem;
   color: $color-tertiary;
   text-decoration: none;
@@ -84,8 +84,8 @@
 
 .features__button {
   @include flex(column, center, center);
-  width: 10.125rem;
-  height: 2.4375rem;
+  width: 13.125rem;
+  height: 3rem;
   border-radius: 0.5rem;
   color: $color-secondary;
   text-decoration: none;
@@ -169,12 +169,20 @@
   text-align: center;
   max-width: 20rem;
   width: 92%;
-  height: 4.375rem;
+  height: 3.75rem;
   padding: 0.5rem;
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 1.25rem;
   border-radius: 0.5rem;
+  border: solid 1px $color-tertiary;
+
+  &:hover {
+    background-color: $color-tertiary;
+    color: $color-secondary;
+    border: solid 1px $color-secondary;
+    transition: all 0.25s ease-in-out;
+  }
 }
 
 .nft__buttonTwo {
@@ -185,17 +193,27 @@
   text-align: center;
   max-width: 20rem;
   width: 92%;
-  height: 4.375rem;
+  height: 3.75rem;
   padding: 0.5rem;
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 1.25rem;
   border-radius: 0.5rem;
+  border: solid 1px #2f2f2f;
+
+  &:hover {
+    background-color: $color-secondary;
+    color: $color-tertiary;
+    border: solid 1px $color-tertiary;
+    transition: all 0.25s ease-in-out;
+  }
 }
 
 .nft__image {
   position: absolute;
   bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 .terms__container {
@@ -217,12 +235,38 @@
   color: $color-quaternary;
 }
 
+.nft__title {
+  font-weight: 700;
+  font-size: 1.875rem;
+  text-align: center;
+}
+
+.about {
+  max-width: 1366px;
+  margin: 3.125rem auto;
+  padding: 0 1.25rem;
+}
+
+.about__container {
+  @include flex(column, center, center);
+  margin-top: 2.625rem;
+
+  h3 {
+    font-weight: 400;
+    font-size: 0.75rem;
+    text-align: center;
+    color: $color-quaternary;
+  }
+}
+
 @include tablet() {
   .hero {
     height: 63.6875rem;
     padding-left: 4.6875rem;
     padding-right: 4.6875rem;
+    margin: 0 1.25rem;
   }
+
   .hero__infoContainer {
     @include flex(row, space-between, flex-start);
     margin-top: 2.625rem;
@@ -243,4 +287,80 @@
   .hero__image {
     width: 73.125rem;
   }
+
+  .features {
+    @include flex(row, space-between, flex-start);
+    max-width: 1366px;
+    margin: 10rem auto;
+    padding: 0 1.25rem;
+    gap: 2rem;
+  }
+
+  .features__cardContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1.25rem;
+  }
+  .features__containerText {
+    @include flex(column, center, flex-start);
+  }
+
+  .features__text {
+    font-size: 2rem;
+    text-align: left;
+    width: 80%;
+  }
+
+  .features__title {
+    font-size: 1rem;
+  }
+
+  .features__card {
+    width: 12.9rem;
+    height: 9.25rem;
+    margin-bottom: 0;
+  }
+
+  .nft {
+    max-width: 1366px;
+    margin: 3.125rem auto;
+    padding: 0 1.25rem;
+  }
+
+  .nft__title {
+    width: 80%;
+    margin: 0 auto;
+    font-size: 3rem;
+  }
+
+  .nft__infoContainer {
+    @include flex(row, space-between, center);
+    height: unset;
+    width: unset;
+    padding: 2rem;
+  }
+
+  .nft__buttonContainer {
+    @include flex(row, center, center);
+    margin-top: 1rem;
+    margin-bottom: 0;
+    gap: 1rem;
+  }
+
+  .nft__image {
+    transform: translate(1, 0);
+    position: relative;
+  }
+
+  .nft__buttonOne,
+  .nft__buttonTwo {
+    max-width: 15rem;
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .about__container {
+    @include flex(row, center, center);
+  }
 }
+

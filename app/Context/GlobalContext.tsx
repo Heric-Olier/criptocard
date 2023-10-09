@@ -1,6 +1,7 @@
 "use client";
 import React from 'react'
 import { createContext, useState, useContext } from 'react';
+import AppReducer from '../apply/reducer/AppReducer';
 
 type ContextProps = {
   userData: {
@@ -14,13 +15,7 @@ type ContextProps = {
 }
 
 
-const Context = createContext<ContextProps>({
-  userData: {
-    country_origin: "",
-    country_residence: "",
-  },
-  setUserData: () => {},
-});
+const Context = createContext<ContextProps>(AppReducer);
 
 export const ContextProvider = ({children}:any) => {
 
@@ -30,7 +25,7 @@ export const ContextProvider = ({children}:any) => {
   });
 
   return (
-    <Context.Provider value={{ userData, setUserData }}>
+    <Context.Provider value={ AppReducer }>
       {children}
     </Context.Provider>
   )

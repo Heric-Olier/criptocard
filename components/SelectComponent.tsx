@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useGlobalContext } from "@/app/Context/GlobalContext";
+import React, { use, useEffect, useState } from "react";
+import { useGlobalContext } from "@/app/context/GlobalContext";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { ChevronUpIcon } from "@heroicons/react/24/solid";
 import styles from "./select.module.scss";
@@ -159,8 +159,10 @@ export default function SelectComponent() {
     img: "",
   });
 
-  const { userData, setUserData } = useGlobalContext();
-  console.log(userData)
+  // const { userData, setUserData } = useGlobalContext();
+  
+  const state = useGlobalContext();
+  console.log(state);
 
   return (
     <article className={styles.select__container}>
@@ -176,7 +178,7 @@ export default function SelectComponent() {
               alt={selectedCountry.label}
             />
           )}
-          <h3>{userData.country_origin}</h3>
+          {/* <h3>{userData.country_origin}</h3> */}
         </div>
 
         {openSelect ? (
@@ -191,13 +193,13 @@ export default function SelectComponent() {
             <div
               key={index}
               className={styles.select__option}
-              onClick={() => {
-                setUserData((prev) => ({
-                  ...prev,
-                  country_origin: country.label,
-                }));
-                setOpenSelect(false);
-              }}
+              // onClick={() => {
+              //   setUserData((prev) => ({
+              //     ...prev,
+              //     country_origin: country.label,
+              //   }));
+              //   setOpenSelect(false);
+              // }}
             >
               <img
                 className={styles.country__flag}

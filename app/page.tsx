@@ -13,10 +13,10 @@ export default function page() {
           <Link href={"/"}>
             <Image
               className={styles.logo}
-              src="/logo-prestabit-global.png"
+              src="/cryptospace-logo-web.png"
               alt="cryptospace logo"
-              width={210}
-              height={40}
+              width={206}
+              height={46}
             />
           </Link>
           <h2 className={styles.hero__title}>
@@ -122,45 +122,64 @@ export default function page() {
       {/* NFT */}
 
       <section className={styles.nft}>
-        <h2 className={styles.features__text}>
+        <h2 className={styles.nft__title}>
           Save up to 40% on card loading fees when you hold HappyLand Gummy
           Bears NFT
         </h2>
         <div className={styles.nft__infoContainer}>
-          <div className={styles.nft__textContainer}>
-            <div className={styles.nft__textContent}>
-              <img src="/check-icon.png" alt="check icon" />
-              <h3
-                className={styles.nft__text}
-              >{`Hold a (HLGB) NFT get 20% off loading fee`}</h3>
+          <div className={styles.nft__textButtonContainer}>
+            <div className={styles.nft__textContainer}>
+              <div className={styles.nft__textContent}>
+                <img src="/check-icon.png" alt="check icon" />
+                <h3
+                  className={styles.nft__text}
+                >{`Hold a (HLGB) NFT get 20% off loading fee`}</h3>
+              </div>
+              <div className={styles.nft__textContent}>
+                <img src="/check-icon.png" alt="check icon" />
+                <h3
+                  className={styles.nft__text}
+                >{`Hold a (TFCS) NFT get 20% off loading fee`}</h3>
+              </div>
+              <div className={styles.nft__textContent}>
+                <img src="/check-icon.png" alt="check icon" />
+                <h3
+                  className={styles.nft__text}
+                >{`Combine to get up to 40% off`}</h3>
+              </div>
             </div>
-            <div className={styles.nft__textContent}>
-              <img src="/check-icon.png" alt="check icon" />
-              <h3
-                className={styles.nft__text}
-              >{`Hold a (TFCS) NFT get 20% off loading fee`}</h3>
-            </div>
-            <div className={styles.nft__textContent}>
-              <img src="/check-icon.png" alt="check icon" />
-              <h3
-                className={styles.nft__text}
-              >{`Combine to get up to 40% off`}</h3>
+            <div className={styles.nft__buttonContainer}>
+              <Link className={styles.nft__buttonOne} href="/">
+                Get HappyLand
+                <br /> gummy bears
+              </Link>
+              <Link className={styles.nft__buttonTwo} href="/">
+                Get Tales from <br />
+                CryptoSpace Gummies
+              </Link>
             </div>
           </div>
-          <div className={styles.nft__buttonContainer}>
-            <Link className={styles.nft__buttonOne} href="/">
-              Get HappyLand
-              <br /> gummy bears
-            </Link>
-            <Link className={styles.nft__buttonTwo} href="/">
-              Get Tales from <br />
-              CryptoSpace Gummies
-            </Link>
+          <div className={styles.nft__imageContainer}>
+            <img
+              className={styles.nft__image}
+              src="/nft-image.png"
+              alt="nft image"
+            />
           </div>
-          <img
-            className={styles.nft__image}
-            src="/nft-image.png"
-            alt="nft image"
+        </div>
+      </section>
+
+      {/* About */}
+
+      <section className={styles.about}>
+        <div className={styles.about__container}>
+          <h3>Cryptospace card is a product of</h3>
+          <Image
+            className={styles.features__icon}
+            src="/logo-prestabit-global.png"
+            alt="logo prestabit"
+            width={210}
+            height={42}
           />
         </div>
       </section>
@@ -172,7 +191,7 @@ export default function page() {
           Copyright 2022 Cryptospace, all rights reserved.
         </h4>
         <Link href={"/terms"} className={styles.terms__conditions}>
-          Terms & Conditions 
+          Terms & Conditions
         </Link>
       </section>
     </>
