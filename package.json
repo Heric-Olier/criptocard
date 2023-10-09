@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
+    "axios": "^1.5.1",
     "next": "latest",
     "pdfjs-dist": "3.4.120",
     "pspdfkit": "^2023.4.5",
@@ -22,6 +23,7 @@
     "@types/react-dom": "latest",
     "eslint": "latest",
     "eslint-config-next": "latest",
+    "sass": "^1.69.0",
     "typescript": "latest"
   }
 }

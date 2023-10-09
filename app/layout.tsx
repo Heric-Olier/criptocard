@@ -1,7 +1,6 @@
-import { useState } from "react";
 import "@/scss/global.scss";
 import { Inter } from "next/font/google";
-import { ContextProvider } from "@/app/context/GlobalContext";
+
 
 export const metadata = {
   title: "Cryptospace Card",
@@ -20,14 +19,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    
       <html lang="en">
-        
         <body className={inter.className}>
-          <ContextProvider>
           {children}
-          </ContextProvider>
-          </body>
+        </body>
       </html>
   );
 }

@@ -16,11 +16,11 @@ import ChooseCard from "@/components/ChooseCard";
 import ShippingOptions from "@/components/ShippingOptions";
 import Summary from "@/components/OrderSummary";
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
+import { CardProfileProvider } from "../context/cardProfileContext";
 
 const MAX_STEPS = 8;
 
 export default function Apply() {
-  const Context = createContext(null);
 
   const [formStep, useFormStep] = useState(1);
   const router = useRouter();
@@ -52,13 +52,9 @@ export default function Apply() {
     if (formStep === 8) console.log("finished");
   }, [formStep]);
 
-  const [userData, setUserData] = useState({
-    country_origin: "USA",
-    country_residence: "USA",
-  });
 
   return (
-    <Context.Provider value={{ userData, setUserData }}>
+    <CardProfileProvider>
       <section className={styles.main__background}>
         <div className={styles.main__formContainer}>
           <Link href={"/"}>
@@ -85,6 +81,6 @@ export default function Apply() {
           alt="cards group"
         />
       </section>
-    </Context.Provider>
+    </CardProfileProvider>
   );
 }

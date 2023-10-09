@@ -1,8 +1,10 @@
-import React, { use, useEffect, useState } from "react";
-import { useGlobalContext } from "@/app/context/GlobalContext";
+import React, { use, useContext, useEffect, useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { ChevronUpIcon } from "@heroicons/react/24/solid";
 import styles from "./select.module.scss";
+import axios from "axios";
+import CardProfileContext from "@/app/context/cardProfileContext";
+import CountryOrigin from './CountryOrigin';
 
 const countries = [
   {
@@ -158,11 +160,18 @@ export default function SelectComponent() {
     label: "Select Country",
     img: "",
   });
+  const context = useContext(CardProfileContext)
+
+  console.log(CountryOrigin)
+  useEffect(() => {
+    axios.get('https://restcountries.com/v3.1/all')
+      .then(response => console.log(response.data))
+      .catch(error => {
+        console.error("This is an error", error.status)
+      })
+  }, [])
 
   // const { userData, setUserData } = useGlobalContext();
-  
-  const state = useGlobalContext();
-  console.log(state);
 
   return (
     <article className={styles.select__container}>

@@ -3,6 +3,8 @@ import styles from "./home.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 
+import cardsHomeReal from "../public/img/cards-home-real.png"
+
 export default function page() {
   return (
     <>
@@ -28,11 +30,7 @@ export default function page() {
             Get Started
           </Link>
         </div>
-        <img
-          className={styles.hero__image}
-          src="/cards-home-real.png"
-          alt="home image"
-        />
+        <Image src={cardsHomeReal} alt="cards" className={styles.hero__image}/>
       </section>
 
       {/* Features */}
