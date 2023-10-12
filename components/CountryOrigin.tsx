@@ -6,7 +6,7 @@ import CardProfileContext from "@/app/context/cardProfileContext";
 
 export default function CountryOrigin() {
 
-  const { setScreen } = useContext(CardProfileContext);
+  const { setScreen }: any = useContext(CardProfileContext);
 
   useEffect(() => {
     setScreen("countryOrigin");

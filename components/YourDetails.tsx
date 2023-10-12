@@ -1,16 +1,11 @@
 import styles from "./main.module.scss";
 import detailsstyles from "./detailsstyles.module.scss";
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import CardProfileContext from "@/app/context/cardProfileContext";
-import useScreenRender from "@/app/hooks/useScreenRender";
 
 export default function YourDetails() {
-  const { userData, setUserData, page, setPage } = useContext(CardProfileContext);
+  const { userData, setUserData, page, setPage }: any = useContext(CardProfileContext);
   const [confirmEmail, setConfirmEmail] = useState("");
-  const { stepRender, nextStep, prevStep } = useScreenRender(page, setPage);
-
-
-
 
   const handleChanges = (e: any) => {
     setUserData({
@@ -22,11 +17,8 @@ export default function YourDetails() {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    if (userData.email !== confirmEmail) {
-      alert("Emails don't match");
-      return;
-    }
-
+    setPage(page + 1)
+    console.log("Handle submit event", userData)  
   }
 
   return (
@@ -45,7 +37,7 @@ export default function YourDetails() {
                 placeholder="Your full name"
                 value={userData.name}
                 name="name"
-                onChange={(e) => handleChanges(e)}
+                onChange={handleChanges}
               />
             </label>
           </div>
@@ -59,7 +51,7 @@ export default function YourDetails() {
                 placeholder="Your email address"
                 value={userData.email}
                 name="email"
-                onChange={(e) => handleChanges(e)}
+                onChange={handleChanges}
               />
             </label>
           </div>
@@ -70,7 +62,7 @@ export default function YourDetails() {
               <input type="email" required placeholder="Your email address"
               value={confirmEmail}
               name="confirm-email"
-              onChange={(e) => handleChanges(e)}
+              onChange={handleChanges}
               />
             </label>
           </div>
@@ -123,7 +115,7 @@ export default function YourDetails() {
           </div>
 
           <button type="submit"
-          onClick={(e) => handleSubmit(e)}
+          onClick={handleSubmit}
           >Submit</button>
         </form>
       </section>
