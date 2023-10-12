@@ -52,6 +52,7 @@
   position: absolute;
   bottom: 0;
   width: 25.625rem;
+  height: auto;
 }
 
 .features {
@@ -363,4 +364,3 @@
     @include flex(row, center, center);
   }
 }
-

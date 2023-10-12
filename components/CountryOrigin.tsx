@@ -1,13 +1,18 @@
 import SelectComponent from "./SelectComponent";
 import styles from "./main.module.scss";
 import countrystyles from "./country.module.scss";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import CardProfileContext from "@/app/context/cardProfileContext";
 
 export default function CountryOrigin() {
-  const context = useContext(CardProfileContext)
 
-  console.log("My context", context?.countryOrigin)
+  const { setScreen } = useContext(CardProfileContext);
+
+  useEffect(() => {
+    setScreen("countryOrigin");
+  }, []);
+
+
   return (
     <>
       <section className={countrystyles.countryOrigin__container}>

@@ -33,14 +33,14 @@
   }
 
   input {
-    width: 100%;
+    width: 94%;
     height: 2.375rem;
     border-radius: 0.5rem;
     border: solid 1px #c1c1c1;
     margin-top: 0.34rem;
     font-weight: 500;
     font-size: 1rem;
-    padding: 0;
+    padding: 0 .625rem;
 
     &::placeholder {
       color: #969696;
@@ -48,6 +48,10 @@
       font-size: 1rem;
     }
   }
+}
+
+.input__row {
+  width: 88% !important;
 }
 
 .label__midLeft {

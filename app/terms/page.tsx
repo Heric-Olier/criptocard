@@ -19,7 +19,7 @@ export default function Terms() {
       <div className={termsstyles.main__formContainer}>
         <h2 className={termsstyles.main__title}>Cryptospace Agreement</h2>
         <div className={termsstyles.main__textContainer}>
-          <div className={termsstyles.main__containerTex}>
+          <div className={termsstyles.main__containerText}>
             <p>
               The combination of terms that could apply to you will differ
               depending on the specific card offer at the time of application.

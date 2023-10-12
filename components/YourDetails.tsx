@@ -1,7 +1,34 @@
 import styles from "./main.module.scss";
 import detailsstyles from "./detailsstyles.module.scss";
+import { useEffect, useState, useContext } from "react";
+import CardProfileContext from "@/app/context/cardProfileContext";
+import useScreenRender from "@/app/hooks/useScreenRender";
 
 export default function YourDetails() {
+  const { userData, setUserData, page, setPage } = useContext(CardProfileContext);
+  const [confirmEmail, setConfirmEmail] = useState("");
+  const { stepRender, nextStep, prevStep } = useScreenRender(page, setPage);
+
+
+
+
+  const handleChanges = (e: any) => {
+    setUserData({
+      ...userData,
+      [e.target.name]: e.target.value,
+    });
+    setConfirmEmail(e.target.value);
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    if (userData.email !== confirmEmail) {
+      alert("Emails don't match");
+      return;
+    }
+
+  }
+
   return (
     <>
       <section className={detailsstyles.yourdetails__container}>
@@ -12,21 +39,39 @@ export default function YourDetails() {
           <div className={detailsstyles.container__label}>
             <label className={detailsstyles.label}>
               Full name <span>*</span>
-              <input type="text" required placeholder="Your full name" />
+              <input
+                type="text"
+                required
+                placeholder="Your full name"
+                value={userData.name}
+                name="name"
+                onChange={(e) => handleChanges(e)}
+              />
             </label>
           </div>
 
           <div className={detailsstyles.container__label}>
             <label className={detailsstyles.label}>
               Email <span>*</span>
-              <input type="email" required placeholder="Your email address" />
+              <input
+                type="email"
+                required
+                placeholder="Your email address"
+                value={userData.email}
+                name="email"
+                onChange={(e) => handleChanges(e)}
+              />
             </label>
           </div>
 
           <div className={detailsstyles.container__label}>
             <label className={detailsstyles.label}>
               Confirm Email <span>*</span>
-              <input type="email" required placeholder="Your email address" />
+              <input type="email" required placeholder="Your email address"
+              value={confirmEmail}
+              name="confirm-email"
+              onChange={(e) => handleChanges(e)}
+              />
             </label>
           </div>
 
@@ -40,11 +85,19 @@ export default function YourDetails() {
           <div className={detailsstyles.container__labelRow}>
             <label className={detailsstyles.label__midLeft}>
               Telegram ID
-              <input type="number" placeholder="Your telegram id" />
+              <input
+                className={detailsstyles.input__row}
+                type="number"
+                placeholder="Your telegram id"
+              />
             </label>
             <label className={detailsstyles.label__midRight}>
               Whatsapp ID <span>*</span>
-              <input type="number" placeholder="Your whatsapp id" />
+              <input
+                className={detailsstyles.input__row}
+                type="number"
+                placeholder="Your whatsapp id"
+              />
             </label>
           </div>
 
@@ -69,7 +122,9 @@ export default function YourDetails() {
             </h5>
           </div>
 
-          {/* <button type="submit">Submit</button> */}
+          <button type="submit"
+          onClick={(e) => handleSubmit(e)}
+          >Submit</button>
         </form>
       </section>
     </>

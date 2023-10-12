@@ -1,4 +1,4 @@
-import React, { use, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { ChevronUpIcon } from "@heroicons/react/24/solid";
@@ -9,26 +9,32 @@ import CardProfileContext from "@/app/context/cardProfileContext";
 export default function SelectComponent() {
   const [countries, setCountries] = useState([]);
   const [openSelect, setOpenSelect] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useState<any>()
 
-  const context:any = useContext(CardProfileContext)
-
-  console.log("My context", context?.id, typeof(context?.id))
+  const {
+    countryOrigin,
+    setCountryOrigin,
+    countryResidency,
+    setCountryResidency,
+    screen,
+  } = useContext(CardProfileContext);
 
   useEffect(() => {
-    axios.get('http://cryptomex-prod.eastus.cloudapp.azure.com:8000/api/countries/')
-      .then(response => setCountries(response.data))
-      .catch(error => {
+    axios
+      .get(
+        "http://cryptomex-prod.eastus.cloudapp.azure.com:8000/api/countries/",
+      )
+      .then((response) => setCountries(response.data))
+      .catch((error) => {
         console.error("This is an error", error.status);
-      })
-  }, [])
+      });
+  }, []);
 
-  
-  const updateCountry = ( country: any ) => {
-    setSelectedCountry(country)
-    setOpenSelect(!openSelect)
-    context?.setCountryOrigin( country.id )
-  } 
+  const updateCountry = (country: any) => {
+    setOpenSelect(!openSelect);
+    screen === "countryResidence"
+      ? setCountryResidency(country)
+      : setCountryOrigin(country);
+  };
 
   const renderCountries = () => {
     return countries.map((country: any) => (
@@ -37,12 +43,35 @@ export default function SelectComponent() {
         className={styles.select__option}
         onClick={() => updateCountry(country)}
       >
-        <Image src={country?.icon_name} alt={country?.name} width={20} height={15} />
-        
+        <Image
+          src={country?.icon_name}
+          alt={country?.name}
+          width={20}
+          height={15}
+        />
+
         <p>{country?.name}</p>
       </div>
-    ))
-  }
+    ));
+  };
+
+  const renderSelect = (countryType: any) => {
+    console.log("adentro", countryType);
+    return countryType ? (
+      <div key={countryType?.id} className={styles.select__option}>
+        <Image
+          src={countryType?.icon_name}
+          alt={countryType?.name}
+          width={20}
+          height={15}
+        />
+        <p>{countryType?.name}</p>
+      </div>
+    ) : (
+      "Select Country"
+    );
+  };
+
   return (
     <article className={styles.select__container}>
       <button
@@ -50,19 +79,9 @@ export default function SelectComponent() {
         onClick={() => setOpenSelect(!openSelect)}
       >
         <div className={styles.countryAnd__flag}>
-          {
-            selectedCountry ? (
-              <div
-                key={selectedCountry?.id}
-                className={styles.select__option}
-              >
-                <Image src={selectedCountry?.icon_name} alt={selectedCountry?.name} width={20} height={15} />
-                
-                <p>{selectedCountry?.name}</p>
-              </div>
-            ) : 'Choose here'
-          }
-          {/* <h3>{userData.country_origin}</h3> */}
+          {screen === "countryResidence"
+            ? renderSelect(countryResidency)
+            : renderSelect(countryOrigin)}
         </div>
 
         {openSelect ? (

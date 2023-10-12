@@ -1,8 +1,35 @@
 import styles from "./main.module.scss";
 import planstyles from "./chooseplan.module.scss";
 import PlanCards from "./PlanCards";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 
 export default function ChoosePlan() {
+  const [plans, setPlans] = useState<any>([])
+  
+
+  useEffect(() => {
+    axios.get('http://cryptomex-prod.eastus.cloudapp.azure.com:8000/api/plans/')
+      .then(response => setPlans(response.data))
+      .catch(error => {
+        console.error("This is an error", error.status);
+      })
+  }, [])
+
+  const renderPlans = () => {
+    return plans.map((plan: any) => (
+      <PlanCards
+        key={plan?.id}
+        price={plan?.price}
+        loadMax={"LOAD MAX PER MONTH"}
+        description={plan?.benefits_list}
+        benefitOne={plan?.benefit_one}
+        benefitTwo={plan?.benefit_two}
+      />
+    ))
+  }
+
   return (
     <>
       <section>
@@ -11,30 +38,14 @@ export default function ChoosePlan() {
           <h5 className={styles.main__text}>Unlock endless possibilities</h5>
         </div>
         <div className={planstyles.plan__cardsContainer}>
-          
           {/*Card One*/}
-          <PlanCards
-            price="$5,000 USD"
-            loadMax="LOAD MAX PER MONTH"
-            description={[
-              "$300 Anual Membership",
-              "$5.000 Account Limit",
-              "4.2% Exchange Fee*",
-              "1% loading fee ( $10 minimum charge )",
-              "$8 + 4.5% ATM Withdrawal",
-              "$2.50 ATM Balance Inquiry",
-              "$7 P2P Transfers",
-              "$1.20 POS & Online Purchase",
-              "4.5% FX Currency Exchange",
-            ]}
-            benefitOne="*7% loading fee if you don’t hold
-              an HLGB or TFCS NFT"
-            benefitTwo="TAKE OUT THE ENTIRE LINE 4%
-              BUY SELL CRYPTO IT IS GONE NOW"
-          />
+
+            {renderPlans()}
+        
 
           {/*Card Two*/}
-          <PlanCards
+
+          {/* <PlanCards
             price="$25,000 USD"
             loadMax="LOAD MAX PER MONTH"
             description={[
@@ -52,10 +63,11 @@ export default function ChoosePlan() {
               an HLGB or TFCS NFT"
             benefitTwo="TAKE OUT THE ENTIRE LINE 3.75%
               BUY SELL CRYPTO IT IS GONE NOW"
-          />
+          /> */}
 
           {/*Card Three*/}
-          <PlanCards
+
+          {/* <PlanCards
             price="$100,000 USD"
             loadMax="LOAD MAX PER MONTH"
             description={[
@@ -73,7 +85,7 @@ export default function ChoosePlan() {
               an HLGB or TFCS NFT"
             benefitTwo="TAKE OUT THE ENTIRE LINE 3%
               BUY SELL CRYPTO IT IS GONE NOW"
-          />
+          /> */}
         </div>
       </section>
     </>
