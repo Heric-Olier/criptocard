@@ -3,7 +3,12 @@ import identitystyles from "./identity.module.scss";
 import detailsstyles from "./detailsstyles.module.scss";
 import Identity from "./Identity";
 
+import React, { useContext, useState } from "react";
+import axios from "axios";
+
 export default function YourIdentity() {
+  
+
   return (
     <>
       <section>
@@ -27,20 +32,8 @@ export default function YourIdentity() {
               text="Upload the front side of your document
                 Supports: JPG, PNG, PDF"
               alt="arrow icon"
+              name="document_front"
             />
-            {/* <div className={identitystyles.inputFiles}>
-              <img src="/arrow-up-icon.png" alt="arrow icon" />
-
-              <h3>Front side of your document</h3>
-              <p className={identitystyles.inputFiles__text}>
-                Upload the front side of your document
-                <br />
-                Supports: JPG, PNG, PDF
-              </p>
-              <label>
-                <input type="file" accept="image/*" />
-              </label>
-            </div> */}
 
             {/*input two*/}
             <Identity
@@ -49,35 +42,16 @@ export default function YourIdentity() {
               text="Upload the front side of your document
                 Supports: JPG, PNG, PDF"
               alt="arrow icon"
+              name="document_back"
             />
-            {/* <div className={identitystyles.inputFiles}>
-              <img src="/arrow-up-icon.png" alt="arrow icon" />
-
-              <h3>Back side of your document</h3>
-              <p className={identitystyles.inputFiles__text}>
-                Upload the front side of your document
-                <br />
-                Supports: JPG, PNG, PDF
-              </p>
-              <label>
-                <input type="file" accept="image/*" />
-              </label>
-            </div> */}
 
             {/*input three*/}
             <Identity
               title="Selfie holding your ID"
               alt="arrow icon"
               img="/capture-icon.png"
+              name="document_selfie"
             />
-            
-            {/* <div className={identitystyles.inputFiles}>
-              <h3>Take Selfie Holding Your ID</h3>
-              <img className={identitystyles.selfie__icon} src="/capture-icon.png" alt="capture img" />
-              <label>
-                <input type="file" accept="image/*" capture="environment" />
-              </label>
-            </div> */}
 
             <div className={detailsstyles.terms__container}>
               <input type="checkbox" required />
@@ -87,7 +61,10 @@ export default function YourIdentity() {
                 address.
               </h5>
             </div>
-            <button type="submit" className={styles.main__button}>
+            <button
+              type="submit"
+              className={styles.main__button}
+            >
               Continue
             </button>
           </form>

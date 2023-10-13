@@ -56,7 +56,6 @@ export default function SelectComponent() {
   };
 
   const renderSelect = (countryType: any) => {
-    console.log("adentro", countryType);
     return countryType ? (
       <div key={countryType?.id} className={styles.select__option}>
         <Image

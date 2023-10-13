@@ -1,8 +1,36 @@
 import styles from "./main.module.scss";
 import choosecard from "./choosecard.module.scss";
+import { useEffect, useState } from "react";
 import Card from "./Card";
+import axios from "axios";
 
 export default function ChooseCard() {
+  const [cardType, setCardType] = useState<any>([]);
+
+  useEffect(() => {
+    axios
+      .get(
+        "http://cryptomex-prod.eastus.cloudapp.azure.com:8000/api/card-types/",
+      )
+      .then((response) => setCardType(response.data))
+      .catch((error) => {
+        console.error("This is an error", error.status);
+      });
+  }, []);
+
+  const renderCards = () => {
+    return cardType.map((card: any) => (
+      <Card
+        id={card?.id}
+        key={card?.id}
+        img={card?.card_image}
+        title={card?.name}
+        price={card?.price}
+        value={card?.id}
+      />
+    ));
+  };
+
   return (
     <>
       <section>
@@ -11,53 +39,7 @@ export default function ChooseCard() {
         </div>
         <div className={choosecard.container__cards}>
           <form>
-            {/* Plastic Card */}
-            <Card
-              img="/plastic-card.png"
-              title="Plastic Card"
-              price="$50 USD"
-              value="plastic"
-            />
-            {/* <label>
-              <input type="radio" required />
-              <div>
-                <img src="/plastic-card.png" alt="plastic-card" />
-                <h4>Plastic Card</h4>
-                <h2>$50 USD</h2>
-              </div>
-            </label> */}
-            {/* Steel Card */}
-            <Card
-              img="/steel-card.png"
-              title="Steel Card"
-              price="$300 USD"
-              value="steel"
-            />
-            {/* <label>
-              <input type="radio" required />
-              <div>
-                <img src="/steel-card.png" alt="gold-card" />
-                <h4>Steel Card</h4>
-                <h2>$300 USD</h2>
-              </div>
-            </label> */}
-            {/* Gold Card */}
-            <Card
-              img="/gold-card.png"
-              title="Gold Card"
-              subtitle="*24k gold plated solid silver with gems"
-              price="$2.000 USD"
-              value="gold"
-            />
-            {/* <label>
-              <input type="radio" required />
-              <div>
-                <img src="/gold-card.png" alt="gold-card" />
-                <h4>Gold Card</h4>
-                <h5>*24k gold plated solid silver with gems</h5>
-                <h2>$2.000 USD</h2>
-              </div>
-            </label> */}
+            {renderCards()}
             <button type="submit" className={choosecard.button__chooseCard}>
               Next
             </button>

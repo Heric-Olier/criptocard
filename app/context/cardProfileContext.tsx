@@ -15,9 +15,13 @@ const CardProfileProvider = ({ children }: any) => {
     telegram: "",
     whatsapp: "",
     date_of_birth: null,
-    residency: null
+    residency: null,
   });
-  const [documentImage, setDocumentImage] = useState("");
+  const [documentImage, setDocumentImage] = useState<any>({
+    document_front: null,
+    document_back: null,
+    document_selfie: null,
+  });
   const [cardType, setCardType] = useState("");
   const [deliveryType, setDeliveryType] = useState("");
   const [plan, setPlan] = useState("");

@@ -1,10 +1,14 @@
 import styles from "./main.module.scss";
 import detailsstyles from "./detailsstyles.module.scss";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import CardProfileContext from "@/app/context/cardProfileContext";
 
 export default function YourDetails() {
-  const { userData, setUserData, page, setPage }: any = useContext(CardProfileContext);
+  const {
+    userData,
+    setUserData,
+  }: any = useContext(CardProfileContext);
+
   const [confirmEmail, setConfirmEmail] = useState("");
 
   const handleChanges = (e: any) => {
@@ -17,9 +21,9 @@ export default function YourDetails() {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    setPage(page + 1)
-    console.log("Handle submit event", userData)  
-  }
+    console.log("Handle submit event", userData);
+  };
+  
 
   return (
     <>
@@ -59,10 +63,13 @@ export default function YourDetails() {
           <div className={detailsstyles.container__label}>
             <label className={detailsstyles.label}>
               Confirm Email <span>*</span>
-              <input type="email" required placeholder="Your email address"
-              value={confirmEmail}
-              name="confirm-email"
-              onChange={handleChanges}
+              <input
+                type="email"
+                required
+                placeholder="Your email address"
+                value={confirmEmail}
+                name="confirm-email"
+                onChange={handleChanges}
               />
             </label>
           </div>
@@ -70,7 +77,14 @@ export default function YourDetails() {
           <div className={detailsstyles.container__label}>
             <label className={detailsstyles.label}>
               Phone <span>*</span>
-              <input type="number" required placeholder="Your phone number" />
+              <input
+                type="number"
+                required
+                placeholder="Your phone number"
+                value={userData.phone}
+                name="phone"
+                onChange={handleChanges}
+              />
             </label>
           </div>
 
@@ -81,6 +95,9 @@ export default function YourDetails() {
                 className={detailsstyles.input__row}
                 type="number"
                 placeholder="Your telegram id"
+                value={userData.telegram}
+                name="telegram"
+                onChange={handleChanges}
               />
             </label>
             <label className={detailsstyles.label__midRight}>
@@ -88,7 +105,11 @@ export default function YourDetails() {
               <input
                 className={detailsstyles.input__row}
                 type="number"
+                required
                 placeholder="Your whatsapp id"
+                value={userData.whatsapp}
+                name="whatsapp"
+                onChange={handleChanges}
               />
             </label>
           </div>
@@ -96,14 +117,28 @@ export default function YourDetails() {
           <div className={detailsstyles.container__label}>
             <label className={detailsstyles.label}>
               Birthday date <span>*</span>
-              <input type="date" required placeholder="Your birthday date" />
+              <input
+                type="date"
+                required
+                placeholder="Your birthday date"
+                value={userData.date_of_birth}
+                name="date_of_birth"
+                onChange={handleChanges}
+              />
             </label>
           </div>
 
           <div className={detailsstyles.container__label}>
             <label className={detailsstyles.label}>
               Mailing address <span>*</span>
-              <input type="text" required placeholder="Your mailing address" />
+              <input
+                type="text"
+                required
+                placeholder="Your mailing address"
+                value={userData.residency}
+                name="mailing_address"
+                onChange={handleChanges}
+              />
             </label>
           </div>
           <div className={detailsstyles.terms__container}>
@@ -114,9 +149,9 @@ export default function YourDetails() {
             </h5>
           </div>
 
-          <button type="submit"
-          onClick={handleSubmit}
-          >Submit</button>
+          <button type="submit" onClick={handleSubmit}>
+            Submit
+          </button>
         </form>
       </section>
     </>

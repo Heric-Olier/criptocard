@@ -1,8 +1,87 @@
 import Shipping from "./Shipping";
 import styles from "./main.module.scss";
 import shipping from "./shipping.module.scss";
+import { useContext, useEffect, useState } from "react";
+import CardProfileContext from "@/app/context/cardProfileContext";
+import axios from "axios";
 
 export default function ShippingOptions() {
+  const [delivery, setDelivery] = useState<any>([]);
+
+  useEffect(() => {
+    axios
+      .get(
+        "http://cryptomex-prod.eastus.cloudapp.azure.com:8000/api/delivery-types/",
+      )
+      .then((response) => setDelivery(response.data))
+      .catch((error) => {
+        console.error("This is an error", error.status);
+      });
+  }, []);
+
+  const renderShipping = () => {
+    return delivery.map((delivery: any) => (
+      <Shipping
+        id={delivery?.id}
+        key={delivery?.id}
+        title={delivery?.name}
+        price={delivery?.price}
+        value={delivery?.id}
+      />
+    ));
+  };
+
+  const {
+    userData,
+    page,
+    setPage,
+    countryOrigin,
+    countryResidency,
+    documentImage,
+    deliveryType,
+    cardType,
+    plan,
+    seller,
+  }: any = useContext(CardProfileContext);
+
+  const handleSubmit = (e: any) => {
+    const formData = new FormData();
+
+    formData.append("name", userData.name);
+    formData.append("email", userData.email);
+    formData.append("telegram", userData.telegram);
+    formData.append("whatsapp", userData.whatsapp);
+    formData.append("date_of_birth", userData.date_of_birth);
+    formData.append("residency", countryResidency.id);
+    formData.append("country_origin", countryOrigin.id);
+    formData.append("plan", plan);
+    formData.append("card_type", cardType);
+    formData.append("delivery_type", deliveryType);
+    formData.append("seller", "2991a96e-9382-4e3b-862d-452296216a8a");
+    formData.append("totalPrice", 0);
+    formData.append("document_selfie", documentImage.document_selfie);
+    formData.append("document_back", documentImage.document_back);
+    formData.append("document_front", documentImage.document_front);
+
+    e.preventDefault();
+    // setPage(page + 1);
+    console.log("Handle submit event", userData);
+    axios
+      .post(
+        `http://cryptomex-prod.eastus.cloudapp.azure.com:8000/api/preregistration/`,
+        formData,
+      )
+      .then((res) => res.data)
+      .catch((error) => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log(error);
+        }
+      });
+  };
+  console.log(documentImage, "documentImagessssss");
+
   return (
     <>
       <section className={shipping.container__shipping}>
@@ -12,46 +91,14 @@ export default function ShippingOptions() {
         </div>
         <div className={shipping.container__shippingMethods}>
           <form className={shipping.form__shipping}>
-            {/* Domestic Regular */}
-            <Shipping title="Domestic Regular" price="$50 USD" value="domestic-regular"/>
-            {/* <label>
-              <div className={shipping.container__text}>
-                <input type="radio" />
-                <h4>Domestic Regular</h4>
-              </div>
-              <h2>$50 USD</h2>
-            </label> */}
-
-            {/* Domestic Priority */}
-            <Shipping title="Domestic Priority" price="$75 USD" value="domestic-priority"/>
-            {/* <label>
-              <div className={shipping.container__text}>
-                <input type="radio" />
-                <h4>Domestic Priority</h4>
-              </div>
-              <h2>$75 USD</h2>
-            </label> */}
-
-            {/* International Regular */}
-            <Shipping title="International Regular" price="$100 USD" value="international-regular"/>
-
-            {/* <label>
-              <div className={shipping.container__text}>
-                <input type="radio" />
-                <h4>International Regular</h4>
-              </div>
-              <h2>$100 USD</h2>
-            </label> */}
-            {/* International Priority */}
-            <Shipping title="International Priority" price="$150 USD" value="international-priority"/>
-            {/* <label>
-              <div className={shipping.container__text}>
-                <input type="radio" />
-                <h4>International Priority</h4>
-              </div>
-              <h2>$150 USD</h2>
-            </label> */}
-            <button type="submit" className={shipping.button__shipping}>Next</button>
+            {renderShipping()}
+            <button
+              type="submit"
+              className={shipping.button__shipping}
+              onClick={handleSubmit}
+            >
+              Next
+            </button>
           </form>
         </div>
       </section>
